@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WKCrownDelegate {
 
     @IBOutlet var scene: WKInterfaceSKScene!
 
@@ -23,6 +23,8 @@ class InterfaceController: WKInterfaceController {
     }
 
     override func willActivate() {
+        crownSequencer.delegate = self
+        crownSequencer.focus()
         skScene.start()
         super.willActivate()
     }
@@ -34,5 +36,9 @@ class InterfaceController: WKInterfaceController {
 
     @IBAction func didTapScene(_ sender: AnyObject) {
         skScene.tap()
+    }
+
+    func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
+        skScene.bird_velocity += CGFloat(rotationalDelta * 20.0)
     }
 }
