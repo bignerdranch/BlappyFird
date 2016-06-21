@@ -65,6 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PipePairDelegate {
         }
         birdY = newPos;
         bird.position = birdPosition()
+        bird.zRotation = (bird_velocity / 75)
     }
 
     func newPipe() {
