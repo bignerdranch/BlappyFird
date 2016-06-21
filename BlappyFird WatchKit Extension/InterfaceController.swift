@@ -39,6 +39,6 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
     }
 
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
-        skScene.bird_velocity += CGFloat(rotationalDelta * 20.0)
+        skScene.bird_velocity = CGFloat(rotationalDelta * 20.0)
     }
 }
