@@ -19,6 +19,9 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     var bird = PlayerNode()
     var score : Int = 0
 
+    var background = SKSpriteNode(imageNamed: "layer-1")
+    var foreground = SKSpriteNode(imageNamed: "layer-2")
+
     var bird_velocity = CGFloat(0.0)
     var birdY = CGFloat(100.0)
 
@@ -43,6 +46,17 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     }
 
     func setup() {
+        let ctr = center()
+        background.position = ctr
+        background.setScale(ctr.y/768)
+        background.zPosition = -20
+        addChild(background)
+
+        foreground.position = ctr
+        foreground.setScale(ctr.y/768)
+        foreground.zPosition = 20
+        addChild(foreground)
+
         physicsWorld.contactDelegate = self;
         physicsWorld.gravity = CGVector(dx: 0, dy: 0);
 
@@ -91,10 +105,15 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         timer = Timer.scheduledTimer(timeInterval: (1/15.0), target: self, selector: #selector(GameScene.updateBirdPosition), userInfo: nil, repeats: true)
 
         pipetimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GameScene.newPipe), userInfo: nil, repeats: true)
+
+        moveForeground()
+        moveBackground()
     }
 
     func stop() {
         bird.stopFlapping()
+        foreground.removeAllActions()
+        background.removeAllActions()
         if let pair = currentPair {
             pair.close()
         }
@@ -155,7 +174,7 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     func announce() {
         let node = SKLabelNode(text: "\(score)")
         node.position = center()
-        node.fontColor = UIColor.white()
+        node.fontColor = UIColor.black()
         node.fontName = "Helvetica"
         node.fontSize = 96
 
@@ -164,5 +183,35 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         node.run(SKAction.scale(to: 0.001, duration: 1), completion: {(Void) -> Void in
             node.removeFromParent()
         })
+    }
+
+    func moveForeground() {
+        let ctr = center()
+        let scale = foreground.xScale
+        foreground.position = ctr
+        let act = SKAction.customAction(withDuration: 2, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
+            var pos = node.position;
+            pos.x = ctr.x - CGFloat(400.0 * elapsedTime * scale)
+            node.position = pos;
+        })
+        foreground.run(act, completion: {() -> Void in
+            self.moveForeground()
+        })
+    }
+
+    func moveBackground() {
+        var ctr = center()
+        let scale = background.xScale
+        ctr.x += (1000 * scale)
+        background.position = ctr
+        let act = SKAction.customAction(withDuration: 24, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
+            var pos = node.position;
+            pos.x = ctr.x - CGFloat(2000 * scale * elapsedTime / 24)
+            node.position = pos;
+        })
+        background.run(act, completion: {() -> Void in
+            self.moveBackground()
+        })
+
     }
 }
