@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, PipePairDelegate {
+class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDelegate {
 
     enum Category: UInt32 {
         case Bird = 0x01

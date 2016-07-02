@@ -34,6 +34,9 @@ class PipePair: NSObject {
         upper.position = CGPoint(x: startingPoint, y: CGFloat(gapPosition.adding(gapWidth)));
         lower.position = CGPoint(x: startingPoint, y: CGFloat(gapPosition.subtracting(gapWidth)));
 
+        upper.setScale(gapWidth/200)
+        lower.setScale(gapWidth/200)
+
         let move = SKAction.customAction(withDuration: 4.0, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
             var pos = node.position;
             pos.x = self.startingPoint - ((elapsedTime/3.9) * self.startingPoint);
