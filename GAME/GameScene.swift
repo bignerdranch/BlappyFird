@@ -19,7 +19,6 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     var bird = PlayerNode()
     var score : Int = 0
 
-    var background = SKSpriteNode(imageNamed: "layer-1")
     var foreground = SKSpriteNode(imageNamed: "layer-2")
 
     var bird_velocity = CGFloat(0.0)
@@ -37,23 +36,19 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
 
     override init(size: CGSize) {
         super.init(size: size)
-        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
 
-    func setup() {
+    override func setup() {
+
         let ctr = center()
-        background.position = ctr
-        background.setScale(ctr.y/768)
-        background.zPosition = -20
-        addChild(background)
+        super.setup()
 
         foreground.position = ctr
-        foreground.setScale(ctr.y/768)
+        foreground.setScale(self.size.height/foreground.size.height)
         foreground.zPosition = 20
         addChild(foreground)
 
@@ -111,9 +106,10 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     }
 
     func stop() {
+        stopBackground()
+        
         bird.stopFlapping()
         foreground.removeAllActions()
-        background.removeAllActions()
         if let pair = currentPair {
             pair.close()
         }
@@ -157,11 +153,6 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
 
     // utilities
 
-    func center() -> CGPoint {
-        let screenSize = self.size
-        return CGPoint(x: screenSize.width/2, y: screenSize.height/2)
-    }
-
     func tap() {
         bird_velocity = 14
     }
@@ -191,7 +182,7 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         foreground.position = ctr
         let act = SKAction.customAction(withDuration: 2, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
             var pos = node.position;
-            pos.x = ctr.x - CGFloat(400.0 * elapsedTime * scale)
+            pos.x = ctr.x - CGFloat(500.0 * elapsedTime * scale)
             node.position = pos;
         })
         foreground.run(act, completion: {() -> Void in
@@ -199,19 +190,4 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         })
     }
 
-    func moveBackground() {
-        var ctr = center()
-        let scale = background.xScale
-        ctr.x += (1000 * scale)
-        background.position = ctr
-        let act = SKAction.customAction(withDuration: 24, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
-            var pos = node.position;
-            pos.x = ctr.x - CGFloat(2000 * scale * elapsedTime / 24)
-            node.position = pos;
-        })
-        background.run(act, completion: {() -> Void in
-            self.moveBackground()
-        })
-
-    }
 }

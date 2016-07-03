@@ -37,9 +37,12 @@ class PipePair: NSObject {
         upper.setScale(gapWidth/200)
         lower.setScale(gapWidth/200)
 
-        let move = SKAction.customAction(withDuration: 4.0, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
+        let duration = 4.0
+
+        let move = SKAction.customAction(withDuration: duration, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
             var pos = node.position;
-            pos.x = self.startingPoint - ((elapsedTime/3.9) * self.startingPoint);
+            let pctComplete = CGFloat(Double(elapsedTime) / duration)
+            pos.x = self.startingPoint - (pctComplete * self.startingPoint);
             node.position = pos;
         })
         upper.run(move, completion: {() -> Void in
