@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-class ViewController: UIViewController {
+class TVViewController: UIViewController {
     let scene = GameScene(size: UIScreen.main().bounds.size)
 
 

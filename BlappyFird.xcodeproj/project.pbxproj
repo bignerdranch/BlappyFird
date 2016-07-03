@@ -11,7 +11,7 @@
 		0E8B98CF1D284B8000C9663F /* ScrollingBackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */; };
 		0E8B98D01D284B8100C9663F /* ScrollingBackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */; };
 		0EE13C0C1D1D5F9500A9E7C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE13C0B1D1D5F9500A9E7C7 /* AppDelegate.swift */; };
-		0EE13C0E1D1D5F9500A9E7C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE13C0D1D1D5F9500A9E7C7 /* ViewController.swift */; };
+		0EE13C0E1D1D5F9500A9E7C7 /* TVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE13C0D1D1D5F9500A9E7C7 /* TVViewController.swift */; };
 		0EE13C111D1D5F9500A9E7C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE13C0F1D1D5F9500A9E7C7 /* Main.storyboard */; };
 		0EE13C131D1D5F9500A9E7C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE13C121D1D5F9500A9E7C7 /* Assets.xcassets */; };
 		0EE13C181D1D5FA600A9E7C7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA5DF1D19531100750122 /* GameScene.swift */; };
@@ -95,7 +95,7 @@
 		0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingBackgroundScene.swift; sourceTree = "<group>"; };
 		0EE13C091D1D5F9500A9E7C7 /* Blappy Fird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blappy Fird.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE13C0B1D1D5F9500A9E7C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0EE13C0D1D1D5F9500A9E7C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0EE13C0D1D1D5F9500A9E7C7 /* TVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
 		0EE13C101D1D5F9500A9E7C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE13C121D1D5F9500A9E7C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EE13C141D1D5F9500A9E7C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				0EE13C0B1D1D5F9500A9E7C7 /* AppDelegate.swift */,
-				0EE13C0D1D1D5F9500A9E7C7 /* ViewController.swift */,
+				0EE13C0D1D1D5F9500A9E7C7 /* TVViewController.swift */,
 				0EE13C0F1D1D5F9500A9E7C7 /* Main.storyboard */,
 				0EE13C121D1D5F9500A9E7C7 /* Assets.xcassets */,
 				0EE13C141D1D5F9500A9E7C7 /* Info.plist */,
@@ -424,7 +424,7 @@
 			files = (
 				0EE13C1C1D1D5FA700A9E7C7 /* PlayerNode.swift in Sources */,
 				0EE13C181D1D5FA600A9E7C7 /* GameScene.swift in Sources */,
-				0EE13C0E1D1D5F9500A9E7C7 /* ViewController.swift in Sources */,
+				0EE13C0E1D1D5F9500A9E7C7 /* TVViewController.swift in Sources */,
 				0EE13C1A1D1D5FA600A9E7C7 /* PipeNode.swift in Sources */,
 				0EE13C1B1D1D5FA700A9E7C7 /* PipePair.swift in Sources */,
 				0EE13C0C1D1D5F9500A9E7C7 /* AppDelegate.swift in Sources */,
