@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E8B98CE1D284B6400C9663F /* ScrollingBackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */; };
-		0E8B98CF1D284B8000C9663F /* ScrollingBackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */; };
-		0E8B98D01D284B8100C9663F /* ScrollingBackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */; };
+		0E6EE1031D299D200041B23B /* BackgroundScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EE1021D299D200041B23B /* BackgroundScroller.swift */; };
+		0E6EE1041D299DC40041B23B /* BackgroundScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EE1021D299D200041B23B /* BackgroundScroller.swift */; };
+		0E6EE1051D299DC40041B23B /* BackgroundScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EE1021D299D200041B23B /* BackgroundScroller.swift */; };
 		0EE13C0C1D1D5F9500A9E7C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE13C0B1D1D5F9500A9E7C7 /* AppDelegate.swift */; };
 		0EE13C0E1D1D5F9500A9E7C7 /* TVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE13C0D1D1D5F9500A9E7C7 /* TVViewController.swift */; };
 		0EE13C111D1D5F9500A9E7C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE13C0F1D1D5F9500A9E7C7 /* Main.storyboard */; };
@@ -92,7 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingBackgroundScene.swift; sourceTree = "<group>"; };
+		0E6EE1021D299D200041B23B /* BackgroundScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundScroller.swift; sourceTree = "<group>"; };
 		0EE13C091D1D5F9500A9E7C7 /* Blappy Fird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blappy Fird.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE13C0B1D1D5F9500A9E7C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EE13C0D1D1D5F9500A9E7C7 /* TVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 				0EFAA5E21D19531100750122 /* PipePair.swift */,
 				0EFAA5E01D19531100750122 /* PlayerNode.swift */,
 				0EFAA5E31D19531100750122 /* UpperPipeNode.swift */,
-				0E8B98CD1D284B6400C9663F /* ScrollingBackgroundScene.swift */,
+				0E6EE1021D299D200041B23B /* BackgroundScroller.swift */,
 			);
 			path = GAME;
 			sourceTree = "<group>";
@@ -428,7 +428,7 @@
 				0EE13C1A1D1D5FA600A9E7C7 /* PipeNode.swift in Sources */,
 				0EE13C1B1D1D5FA700A9E7C7 /* PipePair.swift in Sources */,
 				0EE13C0C1D1D5F9500A9E7C7 /* AppDelegate.swift in Sources */,
-				0E8B98D01D284B8100C9663F /* ScrollingBackgroundScene.swift in Sources */,
+				0E6EE1041D299DC40041B23B /* BackgroundScroller.swift in Sources */,
 				0EE13C1D1D1D5FA700A9E7C7 /* UpperPipeNode.swift in Sources */,
 				0EE13C191D1D5FA600A9E7C7 /* LowerPipeNode.swift in Sources */,
 			);
@@ -444,7 +444,7 @@
 				0EFAA5EF1D19531100750122 /* LowerPipeNode.swift in Sources */,
 				0EFAA5ED1D19531100750122 /* UpperPipeNode.swift in Sources */,
 				0EFAA5EB1D19531100750122 /* PipePair.swift in Sources */,
-				0E8B98CE1D284B6400C9663F /* ScrollingBackgroundScene.swift in Sources */,
+				0E6EE1031D299D200041B23B /* BackgroundScroller.swift in Sources */,
 				0EFAA5E71D19531100750122 /* PlayerNode.swift in Sources */,
 				0EFAA5A91D1952E800750122 /* AppDelegate.swift in Sources */,
 			);
@@ -460,7 +460,7 @@
 				0EFAA5F01D19531100750122 /* LowerPipeNode.swift in Sources */,
 				0EFAA5EE1D19531100750122 /* UpperPipeNode.swift in Sources */,
 				0EFAA5EC1D19531100750122 /* PipePair.swift in Sources */,
-				0E8B98CF1D284B8000C9663F /* ScrollingBackgroundScene.swift in Sources */,
+				0E6EE1051D299DC40041B23B /* BackgroundScroller.swift in Sources */,
 				0EFAA5E81D19531100750122 /* PlayerNode.swift in Sources */,
 				0EFAA5CC1D1952E800750122 /* InterfaceController.swift in Sources */,
 			);

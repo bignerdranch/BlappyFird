@@ -16,8 +16,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let v = view as! SKView
-        v.presentScene(scene)
         scene.pipe_spacing = 250
+        scene.fontSize = 80
+        v.presentScene(scene)
 
         // Do any additional setup after loading the view, typically from a nib.
     }

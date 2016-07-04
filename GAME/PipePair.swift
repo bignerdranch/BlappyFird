@@ -34,6 +34,9 @@ class PipePair: NSObject {
         upper.position = CGPoint(x: startingPoint, y: CGFloat(gapPosition.adding(gapWidth)));
         lower.position = CGPoint(x: startingPoint, y: CGFloat(gapPosition.subtracting(gapWidth)));
 
+        upper.zPosition = 0;
+        lower.zPosition = 0;
+
         upper.setScale(gapWidth/200)
         lower.setScale(gapWidth/200)
 

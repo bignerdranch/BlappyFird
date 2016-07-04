@@ -6,19 +6,20 @@
 //  Copyright © 2016 Big Nerd Ranch. All rights reserved.
 //
 
+import UIKit
 import SpriteKit
 
-class ScrollingBackgroundScene: SKScene {
-    var backgroundImageName : String?
+class ScrollingNode: SKEffectNode {
+    var imageName : String?
     var rightToCenterSprite = SKSpriteNode(imageNamed: "layer-1")
     var centerToLeftSprite = SKSpriteNode(imageNamed: "layer-1")
 
-    var durationOfBackgroundScroll = Double(20)
+    var durationOfScroll = Double(20)
 
-    var backgroundZPosition = CGFloat(-100);
+    var overlap = CGFloat(2.0);
 
-    override init(size: CGSize) {
-        super.init(size: size)
+    override init() {
+        super.init()
         setup()
     }
 
@@ -29,14 +30,14 @@ class ScrollingBackgroundScene: SKScene {
     func setup() {
         if(centerToLeftSprite.parent == nil) {
             centerToLeftSprite.position = center()
-            centerToLeftSprite.zPosition = backgroundZPosition
+            centerToLeftSprite.zPosition = self.zPosition
 
             var pos = center()
             pos.x = pos.x + rightToCenterSprite.size.width
             rightToCenterSprite.position = pos
-            rightToCenterSprite.zPosition = backgroundZPosition
+            rightToCenterSprite.zPosition = self.zPosition
 
-            let scale = CGFloat(self.size.height/centerToLeftSprite.texture!.size().height)
+            let scale = CGFloat(UIScreen.main().bounds.size.height/centerToLeftSprite.texture!.size().height)
             centerToLeftSprite.setScale(scale)
             rightToCenterSprite.setScale(scale)
 
@@ -74,7 +75,7 @@ class ScrollingBackgroundScene: SKScene {
         let ctr = center()
         let width = rightToCenterSprite.size.width
 
-        let duration = Double(self.durationOfBackgroundScroll)
+        let duration = Double(self.durationOfScroll)
 
         let act = SKAction.customAction(withDuration: duration, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
             let pctComplete = elapsedTime / CGFloat(duration)
@@ -90,19 +91,26 @@ class ScrollingBackgroundScene: SKScene {
         let ctr = center()
         let width = rightToCenterSprite.size.width
 
-        let duration = Double(self.durationOfBackgroundScroll)
+        let duration = Double(self.durationOfScroll)
 
         let act = SKAction.customAction(withDuration: duration, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
             let pctComplete = elapsedTime / CGFloat(duration)
             var pos = node.position
-            pos.x = ctr.x + CGFloat(width * (1-pctComplete)) - 2
+            pos.x = ctr.x + CGFloat(width * (1-pctComplete)) - self.overlap
             node.position = pos
         })
         return act
     }
     
     func center() -> CGPoint {
-        let screenSize = self.size
-        return CGPoint(x: screenSize.width/2, y: screenSize.height/2)
+        if let screenSize = self.scene?.size {
+            return CGPoint(x: screenSize.width/2, y: screenSize.height/2)
+        }
+        return CGPoint(x: 10, y: 10)
+    }
+
+    func setTexture(texture : SKTexture) {
+        rightToCenterSprite.texture = texture
+        centerToLeftSprite.texture = texture
     }
 }

@@ -18,7 +18,8 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
 
     override func awake(withContext context: AnyObject?) {
         super.awake(withContext: context)
-        skScene.pipe_spacing = 140
+        skScene.pipe_spacing = 80
+        skScene.fontSize = 32
         scene.presentScene(skScene)
     }
 

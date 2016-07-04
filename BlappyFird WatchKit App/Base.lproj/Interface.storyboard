@@ -13,7 +13,7 @@
                         <spriteKitScene alignment="left" id="XiE-Lq-MQH">
                             <gestureRecognizers>
                                 <tapGestureRecognizer id="EzP-eI-0uP">
-                                    <nil name="precedingGestureRecognizers"/>
+                                    <precedingGestureRecognizers/>
                                     <connections>
                                         <action selector="didTapScene:" destination="AgC-eL-Hgc" id="CrY-Yk-MzJ"/>
                                     </connections>

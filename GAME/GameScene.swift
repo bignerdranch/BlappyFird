@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, PipePairDelegate {
 
     enum Category: UInt32 {
         case Bird = 0x01
@@ -16,13 +16,17 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         case Nothing = 0x00
     }
 
+
+    var foreground : BackgroundScroller?
+    var background : BackgroundScroller?
+
     var bird = PlayerNode()
     var score : Int = 0
-
-    var foreground = SKSpriteNode(imageNamed: "layer-2")
+    var fontSize : CGFloat = 96
 
     var bird_velocity = CGFloat(0.0)
     var birdY = CGFloat(100.0)
+
 
     // bird behavior constants
     let gravity = CGFloat(-2.0)
@@ -36,26 +40,37 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
 
     override init(size: CGSize) {
         super.init(size: size)
+        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setup()
     }
 
-    override func setup() {
+    func setup() {
+        background = BackgroundScroller(scene: self, imageName: "layer-1")
+        foreground = BackgroundScroller(scene: self, imageName: "layer-2")
 
-        let ctr = center()
-        super.setup()
+        if let bg = background {
+            bg.durationOfScroll = 20
+            bg.zPosition = -100
+            bg.overlap = 10.0
+            bg.setup()
+        }
 
-        foreground.position = ctr
-        foreground.setScale(self.size.height/foreground.size.height)
-        foreground.zPosition = 20
-        addChild(foreground)
+        if let fg = foreground {
+            fg.durationOfScroll = 6
+            fg.zPosition = 100
+            fg.overlap = 38.0
+            fg.setup()
+        }
 
-        physicsWorld.contactDelegate = self;
-        physicsWorld.gravity = CGVector(dx: 0, dy: 0);
+        bird.zPosition = 0
+        physicsWorld.contactDelegate = self
 
         addChild(bird)
+        updateBirdPosition()
     }
 
     var currentPair : PipePair?
@@ -65,14 +80,15 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     }
 
     func updateBirdPosition() {
-        bird_velocity += gravity;
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        bird_velocity += gravity
         // check for a bounce
-        var newPos = birdY + bird_velocity;
+        var newPos = birdY + bird_velocity
         if newPos < floor {
             bird_velocity = 0 - (bird_velocity * springiness)
-            newPos = floor;
+            newPos = floor
         }
-        birdY = newPos;
+        birdY = newPos
         bird.position = birdPosition()
         bird.zRotation = (bird_velocity / 75)
     }
@@ -94,22 +110,31 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         bird_velocity = 0.0
         
         birdY = center().y
-        bird.position = birdPosition();
+        bird.position = birdPosition()
         bird.startFlapping()
 
         timer = Timer.scheduledTimer(timeInterval: (1/15.0), target: self, selector: #selector(GameScene.updateBirdPosition), userInfo: nil, repeats: true)
 
         pipetimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GameScene.newPipe), userInfo: nil, repeats: true)
 
-        moveForeground()
-        moveBackground()
+        if let bg = background {
+            bg.moveBackground()
+        }
+        if let fg = foreground {
+            fg.moveBackground()
+        }
     }
 
     func stop() {
-        stopBackground()
-        
+        if let bg = background {
+            bg.stopBackground()
+        }
+        if let fg = foreground {
+            fg.stopBackground()
+        }
+
+
         bird.stopFlapping()
-        foreground.removeAllActions()
         if let pair = currentPair {
             pair.close()
         }
@@ -127,8 +152,8 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     // handling the bird/pipe collision
 
     func didBegin(_ contact: SKPhysicsContact) {
-        var bird = contact.bodyA;
-        var pipe = contact.bodyB;
+        var bird = contact.bodyA
+        var pipe = contact.bodyB
 
         if(bird.categoryBitMask == Category.Pipe.rawValue) { // reversed
             let t = bird
@@ -146,7 +171,7 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
     }
 
     func crash(bird: SKPhysicsBody, pipe: SKPhysicsBody, pair: PipePair) {
-        score = 0;
+        score = 0
         announce()
         pair.close()
     }
@@ -167,27 +192,21 @@ class GameScene: ScrollingBackgroundScene, SKPhysicsContactDelegate, PipePairDel
         node.position = center()
         node.fontColor = UIColor.black()
         node.fontName = "Helvetica"
-        node.fontSize = 96
+        node.fontSize = fontSize
 
         addChild(node)
 
-        node.run(SKAction.scale(to: 0.001, duration: 1), completion: {(Void) -> Void in
+        let scaleAction = SKAction.fadeAlpha(to: 0, duration: 1)
+        let moveAction = SKAction.moveTo(y: self.size.height, duration: 1)
+        let action = SKAction.group([scaleAction, moveAction])
+
+        node.run(action, completion: {(Void) -> Void in
             node.removeFromParent()
         })
     }
 
-    func moveForeground() {
-        let ctr = center()
-        let scale = foreground.xScale
-        foreground.position = ctr
-        let act = SKAction.customAction(withDuration: 2, actionBlock: {(node: SKNode, elapsedTime: CGFloat) -> Void in
-            var pos = node.position;
-            pos.x = ctr.x - CGFloat(500.0 * elapsedTime * scale)
-            node.position = pos;
-        })
-        foreground.run(act, completion: {() -> Void in
-            self.moveForeground()
-        })
+    func center() -> CGPoint {
+        let screenSize = self.size
+        return CGPoint(x: screenSize.width/2, y: screenSize.height/2)
     }
-
 }

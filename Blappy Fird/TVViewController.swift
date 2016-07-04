@@ -17,9 +17,9 @@ class TVViewController: UIViewController {
 
         let v = view as! SKView
         v.presentScene(scene)
-        scene.pipe_spacing = 250
+        scene.pipe_spacing = 450
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.didTap))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(TVViewController.didTap))
 
         tap.allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)];
         tap.allowedTouchTypes = [NSNumber(value: UITouchType.direct.rawValue)];
