@@ -13,6 +13,9 @@
       "role" : "primary-app-icon"
     },
     {
+      "filename" : "title-image.imageset"
+    },
+    {
       "size" : "2320x720",
       "idiom" : "tv",
       "filename" : "Top Shelf Image Wide.imageset",

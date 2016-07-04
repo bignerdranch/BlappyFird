@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "idiom" : "tv",
-      "filename" : "bird0.png",
+      "idiom" : "universal",
+      "filename" : "title-image.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bird0@2x.png",
-      "unassigned" : true,
       "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

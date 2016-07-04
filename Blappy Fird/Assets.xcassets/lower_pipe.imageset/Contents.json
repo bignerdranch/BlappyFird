@@ -1,18 +1,9 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "tv",
       "filename" : "lower_pipe.png",
       "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "lower_pipe@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
     }
   ],
   "info" : {
