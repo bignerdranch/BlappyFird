@@ -18,7 +18,7 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
 
     override func awake(withContext context: AnyObject?) {
         super.awake(withContext: context)
-        skScene.pipe_spacing = 80
+        skScene.pipe_spacing = 175
         skScene.fontSize = 32
         scene.presentScene(skScene)
     }
@@ -40,6 +40,11 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
     }
 
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
-        skScene.bird_velocity += CGFloat(rotationalDelta * 20.0)
+        let input = CGFloat(rotationalDelta * 20.0) + skScene.bird_velocity
+        if (input < 20.0) {
+            skScene.bird_velocity = input
+        } else {
+            skScene.bird_velocity = 20.0
+        }
     }
 }
