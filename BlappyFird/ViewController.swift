@@ -15,13 +15,31 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let v = view as! SKView
-        scene.pipe_spacing = 250
-        scene.fontSize = 80
-        v.presentScene(scene)
+        setupForDevice()
 
-        // Do any additional setup after loading the view, typically from a nib.
+        let v = view as! SKView
+        v.presentScene(scene)
     }
+
+    func setupForDevice() {
+        scene.pipeSpacing = 225
+        scene.fontSize = 80
+
+        scene.pipeOnscreenDuration = 5
+        scene.pipeSecondsBetweenLaunches = 4
+
+        if let foreground = scene.foreground {
+            foreground.durationOfScroll = 15
+            foreground.overlap = 50
+        } else {
+            print("No go on foreground")
+        }
+        if let background = scene.background {
+            background.durationOfScroll = 40
+            background.overlap = 12
+        }
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -34,7 +52,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTap() {
-        scene.tap();
+        scene.tap()
     }
 }
 

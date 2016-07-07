@@ -11,23 +11,32 @@ import SpriteKit
 class TVViewController: UIViewController {
     let scene = GameScene(size: UIScreen.main().bounds.size)
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupForTV()
+
         let v = view as! SKView
         v.presentScene(scene)
-        scene.pipe_spacing = 450
+    }
+
+    func setupForTV() {
+        scene.pipe_spacing = 400
+
+        scene.pipeOnscreenDuration = 5
+        scene.pipeSecondsBetweenLaunches = 3
+
+        if let foreground = scene.foreground {
+            foreground.durationOfScroll = 2
+        }
+
+        let v = view as! SKView
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(TVViewController.didTap))
-
-        tap.allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)];
-        tap.allowedTouchTypes = [NSNumber(value: UITouchType.direct.rawValue)];
-
-        v.addGestureRecognizer(tap);
+        tap.allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)]
+        tap.allowedTouchTypes = [NSNumber(value: UITouchType.direct.rawValue)]
+        v.addGestureRecognizer(tap)
         v.isUserInteractionEnabled = true
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +50,7 @@ class TVViewController: UIViewController {
     }
     
     @IBAction func didTap() {
-        scene.tap();
+        scene.tap()
     }
     
     

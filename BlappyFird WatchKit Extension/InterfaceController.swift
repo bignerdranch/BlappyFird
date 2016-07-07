@@ -18,21 +18,26 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
 
     override func awake(withContext context: AnyObject?) {
         super.awake(withContext: context)
-        skScene.pipe_spacing = 175
+    }
+
+    func setupScene () {
+        skScene.pipeSpacing = 175
         skScene.fontSize = 32
+        skScene.gravity = -0.01
         scene.presentScene(skScene)
     }
 
     override func willActivate() {
+        super.willActivate()
+        setupScene()
         crownSequencer.delegate = self
         crownSequencer.focus()
         skScene.start()
-        super.willActivate()
     }
 
     override func didDeactivate() {
-        skScene.stop()
         super.didDeactivate()
+        skScene.stop()
     }
 
     @IBAction func didTapScene(sender: AnyObject) {

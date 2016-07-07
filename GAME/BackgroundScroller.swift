@@ -18,14 +18,14 @@ class BackgroundScroller: NSObject {
     var durationOfScroll = Double(20)
     var zPosition : CGFloat
 
-    var overlap = CGFloat(2.0);
+    var overlap = CGFloat(2.0)
 
     init(scene: SKScene, imageName: String) {
         self.scene = scene
         self.imageName = imageName
         self.rightToCenterSprite = SKSpriteNode(imageNamed: imageName)
         self.centerToLeftSprite = SKSpriteNode(imageNamed: imageName)
-        self.zPosition = 0.0;
+        self.zPosition = 0.0
         super.init()
     }
 
@@ -114,12 +114,12 @@ class BackgroundScroller: NSObject {
     }
 
     func physicsBody() -> SKPhysicsBody {
-        let body = SKPhysicsBody(rectangleOf: scene.size);
-        body.isDynamic = true;
-        body.categoryBitMask = GameScene.Category.Pipe.rawValue;
-        body.contactTestBitMask = GameScene.Category.Bird.rawValue;
-        body.collisionBitMask = GameScene.Category.Nothing.rawValue;
-        body.usesPreciseCollisionDetection = true;
-        return body;
+        let body = SKPhysicsBody(rectangleOf: scene.size)
+        body.isDynamic = true
+        body.categoryBitMask = GameScene.Category.Pipe.rawValue
+        body.contactTestBitMask = GameScene.Category.Bird.rawValue
+        body.collisionBitMask = GameScene.Category.Nothing.rawValue
+        body.usesPreciseCollisionDetection = true
+        return body
     }
 }

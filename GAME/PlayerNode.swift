@@ -32,11 +32,11 @@ class PlayerNode: SKSpriteNode {
         if let txt = self.texture {
             let body = SKPhysicsBody(rectangleOf: txt.size())
             body.isDynamic = true
-            body.categoryBitMask = GameScene.Category.Bird.rawValue;
-            body.contactTestBitMask = GameScene.Category.Pipe.rawValue;
-            body.collisionBitMask = GameScene.Category.Nothing.rawValue;
+            body.categoryBitMask = GameScene.Category.Bird.rawValue
+            body.contactTestBitMask = GameScene.Category.Pipe.rawValue
+            body.collisionBitMask = GameScene.Category.Nothing.rawValue
             body.usesPreciseCollisionDetection = true
-            self.physicsBody = body;
+            self.physicsBody = body
         }
     }
 
