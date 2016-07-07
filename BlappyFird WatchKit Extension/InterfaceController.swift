@@ -35,7 +35,7 @@ class InterfaceController: WKInterfaceController, WKCrownDelegate {
         super.didDeactivate()
     }
 
-    @IBAction func didTapScene(_ sender: AnyObject) {
+    @IBAction func didTapScene(sender: AnyObject) {
         skScene.tap()
     }
 
